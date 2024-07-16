@@ -4,7 +4,7 @@ const { exec } = require('child_process');
 const fs = require('fs');
 const path = require('path');
 const app = express();
-const port = 5000;
+const port = 3000;
 
 app.use(bodyParser.json());
 app.use(express.static('public'));
@@ -15,7 +15,8 @@ app.post('/convert', (req, res) => {
     const fileName = `output.wav`;
     const filePath = path.join(__dirname, fileName);
 
-    exec(`espeak "${text}" --stdout > ${filePath}`, (error, stdout, stderr) => {
+    // Use eSpeak with Hindi voice (adjust voice according to your requirement)
+    exec(`espeak -vhi "${text}" --stdout > ${filePath}`, (error, stdout, stderr) => {
         if (error) {
             console.error(`exec error: ${error}`);
             return res.status(500).send('Error processing text-to-speech');
