@@ -16,7 +16,7 @@ app.post('/convert', (req, res) => {
     const filePath = path.join(__dirname, fileName);
 
     // Use eSpeak with Hindi voice (adjust voice according to your requirement)
-    exec(`espeak -hi "${text}" --stdout > ${filePath}`, (error, stdout, stderr) => {
+    exec(`espeak -vhi "${text}" --stdout > ${filePath}`, (error, stdout, stderr) => {
         if (error) {
             console.error(`exec error: ${error}`);
             return res.status(500).send('Error processing text-to-speech');
